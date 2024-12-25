@@ -14,9 +14,6 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          // title: const Text("Sign up page"),
-          ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Center(
@@ -109,7 +106,7 @@ class SignInScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextButton(
-                      onPressed: () => context.go("/signUp"),
+                      onPressed: () => context.push("/signUp"),
                       child: const Text(
                         "Register here",
                       ),

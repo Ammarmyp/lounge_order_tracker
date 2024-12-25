@@ -116,7 +116,7 @@ class SignUp extends StatelessWidget {
                   children: [
                     const Text("Already Registered?"),
                     TextButton(
-                      onPressed: () => context.go("/signIn"),
+                      onPressed: () => context.push("/signIn"),
                       child: const Text(
                         "Sign In",
                       ),
