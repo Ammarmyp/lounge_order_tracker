@@ -3,6 +3,7 @@ import 'package:paamy_order_tracker/features/authentication/presentation/sign_in
 import 'package:paamy_order_tracker/features/authentication/presentation/sign_up.dart';
 import 'package:paamy_order_tracker/features/home/presentation/home_screen.dart';
 import 'package:paamy_order_tracker/features/orders/presentation/order_list.dart';
+import 'package:paamy_order_tracker/features/users/presentation/lounge_choice.dart';
 import 'package:paamy_order_tracker/features/users/presentation/user_screen.dart';
 
 class AppRouter {
@@ -23,12 +24,16 @@ class AppRouter {
       ),
       GoRoute(
         path: "/user",
-        builder: (context, state) => UserScreen(),
+        builder: (context, state) => LoungeChoice(),
       ),
       GoRoute(
         path: "/orderList",
         builder: (context, state) => OrderListScreen(),
       ),
+      GoRoute(
+        path: "/user_form",
+        builder: (context, state) => UserScreen(),
+      )
     ],
   );
 }
