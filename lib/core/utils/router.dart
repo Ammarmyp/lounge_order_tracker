@@ -27,7 +27,7 @@ class AppRouter {
       ),
       GoRoute(
         path: "/orderList",
-        builder: (context, state) => const OrderListScreen(),
+        builder: (context, state) => OrderListScreen(),
       ),
     ],
   );

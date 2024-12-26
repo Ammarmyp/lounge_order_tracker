@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:paamy_order_tracker/components/my_button.dart';
 import 'package:paamy_order_tracker/components/order_tile.dart';
+import 'package:paamy_order_tracker/features/authentication/presentation/components/my_textField.dart';
 
 class OrderListScreen extends StatelessWidget {
-  const OrderListScreen({super.key});
+  OrderListScreen({super.key});
+
+  final orderNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -14,17 +18,62 @@ class OrderListScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: orders
-                .map((order) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: OrderTile(
-                        orderNum: order["orderNum"]!,
-                        tableNum: order["tableNum"]!,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 12,
+            ),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        child: MyTextField(
+                            controller: orderNumberController,
+                            labelText: "Order Number",
+                            hintText: "65",
+                            obscureText: false),
                       ),
-                    ))
-                .toList(),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      MyButton(onTap: () {}, label: "Search")
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Pending Orders",
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  ListView.builder(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    itemCount: orders.length,
+                    itemBuilder: (context, index) {
+                      final order = orders[index];
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: OrderTile(
+                          orderNum: order["orderNum"]!,
+                          tableNum: order["tableNum"]!,
+                        ),
+                      );
+                    },
+                  ),
+                ]),
           ),
         ),
       ),

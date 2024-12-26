@@ -17,8 +17,7 @@ class UserScreen extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Expanded(
                     child: MyTextField(
