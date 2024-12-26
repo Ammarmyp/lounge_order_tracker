@@ -25,16 +25,25 @@ class OrderListScreen extends StatelessWidget {
       {"orderNum": 3, "tableNum": 55},
     ];
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Admin"),
-      ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 12,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              // crossAxisAlignment: CrossAxisAlignment.center,
+
+              children: [
+                Text(
+                  "Pending Orders",
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -53,19 +62,6 @@ class OrderListScreen extends StatelessWidget {
             ),
             const SizedBox(
               height: 20,
-            ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  "Pending Orders",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 15,
             ),
             Expanded(
               child: ListView.builder(
