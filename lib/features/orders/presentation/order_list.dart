@@ -25,43 +25,81 @@ class OrderListScreen extends StatelessWidget {
       {"orderNum": 3, "tableNum": 55},
     ];
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          padding: const EdgeInsets.only(
+            bottom: 15,
+            left: 15,
+            right: 15,
+          ),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              // crossAxisAlignment: CrossAxisAlignment.center,
+            Container(
+              margin: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+                vertical: 20,
+              ),
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [Colors.grey.shade400, Colors.white],
+                      begin: AlignmentDirectional.topCenter,
+                      end: AlignmentDirectional.bottomCenter),
+                  borderRadius: BorderRadius.circular(10)),
+              child: Column(
+                children: [
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    // crossAxisAlignment: CrossAxisAlignment.center,
 
-              children: [
-                Text(
-                  "Pending Orders",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-              ],
+                    children: [
+                      Text(
+                        "Search Order",
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        child: MyTextField(
+                            controller: orderNumberController,
+                            labelText: "Order Number",
+                            hintText: "65",
+                            obscureText: false),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      MyButton(onTap: () {}, label: "Search")
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Pending Orders",
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
             const SizedBox(
-              height: 30,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Expanded(
-                  child: MyTextField(
-                      controller: orderNumberController,
-                      labelText: "Order Number",
-                      hintText: "65",
-                      obscureText: false),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                MyButton(onTap: () {}, label: "Search")
-              ],
-            ),
-            const SizedBox(
-              height: 20,
+              height: 5,
             ),
             Expanded(
               child: ListView.builder(
