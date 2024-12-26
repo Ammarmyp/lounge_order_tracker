@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                 ModeBtn(
                   icon: Icons.person,
                   label: "User",
-                  onTap: () => context.push("/"),
+                  onTap: () => context.push("/user"),
                 ),
                 const SizedBox(
                   width: 30,
