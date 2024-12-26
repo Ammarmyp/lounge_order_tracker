@@ -5,6 +5,7 @@ import 'package:paamy_order_tracker/features/authentication/presentation/compone
 class UserScreen extends StatelessWidget {
   UserScreen({super.key});
 
+  final tableNumberController = TextEditingController();
   final orderNumberController = TextEditingController();
 
   @override
@@ -21,8 +22,8 @@ class UserScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: MyTextField(
-                      controller: orderNumberController,
-                      labelText: "Enter Order Number",
+                      controller: tableNumberController,
+                      labelText: "Enter Table Number",
                       hintText: "34",
                       obscureText: false,
                     ),
@@ -30,19 +31,33 @@ class UserScreen extends StatelessWidget {
                   SizedBox(
                     width: 60,
                     height: 60,
-                    child: IconButton(
-                      alignment: Alignment.center,
-                      iconSize: 30,
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.qr_code_scanner,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          // color: Colors.grey.shade100,
+                          // borderRadius: BorderRadius.circular(10),
+                          ),
+                      child: IconButton(
+                        alignment: Alignment.center,
+                        iconSize: 30,
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.qr_code_scanner,
+                        ),
                       ),
                     ),
                   )
                 ],
               ),
               const SizedBox(
-                height: 10,
+                height: 15,
+              ),
+              MyTextField(
+                  controller: orderNumberController,
+                  labelText: "Order Number",
+                  hintText: "33",
+                  obscureText: false),
+              const SizedBox(
+                height: 15,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
