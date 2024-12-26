@@ -24,13 +24,13 @@ class ModeBtn extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
             color: Colors.black,
-            width: 2,
+            width: 1.5,
           ),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.2),
-              spreadRadius: 3,
-              blurRadius: 6,
+              spreadRadius: 2,
+              blurRadius: 5,
               offset: const Offset(0, 3),
             ),
           ],
