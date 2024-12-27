@@ -13,7 +13,7 @@ class OrderTile extends StatelessWidget {
       title: Text(tableNum.toString()),
 
       // style: ,
-      tileColor: Colors.grey[200],
+      tileColor: Colors.grey.shade300,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
