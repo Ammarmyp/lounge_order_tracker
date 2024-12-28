@@ -10,62 +10,96 @@ class UserScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const primaryColor = Color(0xFF4A90E2); // Primary color
+    const backgroundGradient = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color(0xFF121212), // Dark background
+        Color(0xFF1E1E1E),
+      ],
+    );
+
     return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: MyTextField(
-                      controller: tableNumberController,
-                      labelText: "Enter Table Number",
-                      hintText: "34",
-                      obscureText: false,
-                    ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: backgroundGradient,
+        ),
+        child: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 60),
+                // Heading
+                Text(
+                  "Order & Table Tracking",
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
-                  SizedBox(
-                    width: 60,
-                    height: 60,
-                    child: Container(
+                ),
+                const SizedBox(height: 30),
+
+                // Table Number Input with QR Code Button
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: MyTextField(
+                        controller: tableNumberController,
+                        labelText: "Enter Table Number",
+                        hintText: "34",
+                        obscureText: false,
+                        textColor: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(width: 15),
+                    Container(
                       decoration: BoxDecoration(
-                          // color: Colors.grey.shade100,
-                          // borderRadius: BorderRadius.circular(10),
-                          ),
+                        color: primaryColor,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                       child: IconButton(
-                        alignment: Alignment.center,
-                        iconSize: 30,
                         onPressed: () {},
                         icon: const Icon(
                           Icons.qr_code_scanner,
+                          size: 30,
+                          color: Colors.white,
                         ),
                       ),
                     ),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              MyTextField(
+                  ],
+                ),
+                const SizedBox(height: 20),
+
+                // Order Number Input
+                MyTextField(
                   controller: orderNumberController,
                   labelText: "Order Number",
                   hintText: "33",
-                  obscureText: false),
-              const SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  MyButton(onTap: () {}, label: "Submit"),
-                ],
-              )
-            ],
+                  obscureText: false,
+                  textColor: Colors.black,
+                ),
+                const SizedBox(height: 40),
+
+                // Submit Button
+                MyButton(onTap: () {}, label: "Submit"),
+
+                const SizedBox(height: 50),
+
+                // Footer text
+                const Text(
+                  "Track your orders and tables with ease.",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.white70,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

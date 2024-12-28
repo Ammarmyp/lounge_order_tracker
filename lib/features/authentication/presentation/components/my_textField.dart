@@ -1,54 +1,67 @@
 import 'package:flutter/material.dart';
 
 class MyTextField extends StatelessWidget {
-  final controller;
+  final TextEditingController controller;
   final String labelText;
   final String hintText;
   final bool obscureText;
-  const MyTextField(
-      {super.key,
-      required this.controller,
-      required this.labelText,
-      required this.hintText,
-      required this.obscureText});
+  final Color textColor; // New property for text color customization
+
+  const MyTextField({
+    super.key,
+    required this.controller,
+    required this.labelText,
+    required this.hintText,
+    required this.obscureText,
+    this.textColor = Colors.black, // Default color
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // Label styling
         Text(
           labelText,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 16,
-            fontWeight: FontWeight.bold,
+            fontWeight:
+                FontWeight.w600, // Slightly lighter for better readability
+            color: Colors.white, // White label for contrast on dark background
           ),
         ),
-        const SizedBox(height: 5),
+        const SizedBox(height: 8),
+
+        // TextField styling
         TextField(
           controller: controller,
           obscureText: obscureText,
+          style: TextStyle(color: textColor), // Use custom text color
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(
               color: Colors.grey[500],
             ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(color: Colors.white),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: Colors.grey.shade400),
-            ),
-            fillColor: Colors.grey.shade100,
+            border: _buildBorder(),
+            enabledBorder: _buildBorder(),
+            focusedBorder:
+                _buildBorder(borderColor: Colors.blue), // Focused border color
             filled: true,
+            fillColor: Colors.grey.shade100,
+            contentPadding: const EdgeInsets.symmetric(
+                horizontal: 20, vertical: 15), // Comfortable padding
           ),
         ),
       ],
+    );
+  }
+
+  // Helper function for borders to reduce code duplication
+  OutlineInputBorder _buildBorder({Color borderColor = Colors.white}) {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12),
+      borderSide: BorderSide(color: borderColor, width: 1.5),
     );
   }
 }
