@@ -7,7 +7,11 @@ class SignUpUsecase {
   SignUpUsecase(this.repository);
 
   Future<UserModel?> execute(
-      String email, String password, String cafeName, String phone) async {
+    String email,
+    String password,
+    String cafeName,
+    String phone,
+  ) async {
     try {
       return await repository.signUp(email, password, cafeName, phone);
     } catch (e) {

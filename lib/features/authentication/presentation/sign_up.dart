@@ -39,7 +39,7 @@ class SignUp extends StatelessWidget {
 
     final controller = Get.find<AuthController>();
     controller.signUp(
-      cafeNameController.text.trim(),
+      emailController.text.trim(),
       passwordController.text.trim(),
       cafeNameController.text.trim(),
       phoneNumberController.text.trim(),
@@ -170,7 +170,7 @@ class SignUp extends StatelessWidget {
                     children: [
                       const Text("Already Registered?"),
                       TextButton(
-                        onPressed: () => Get.to("/signIn"),
+                        onPressed: () => Get.toNamed("/signUp"),
                         child: const Text(
                           "Sign In",
                         ),

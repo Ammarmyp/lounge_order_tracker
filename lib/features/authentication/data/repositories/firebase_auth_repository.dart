@@ -7,7 +7,11 @@ class FirebaseAuthRepository {
   FirebaseAuthRepository(this.authSource);
 
   Future<UserModel?> signUp(
-      String email, String password, String cafeName, String phone) async {
+    String email,
+    String password,
+    String cafeName,
+    String phone,
+  ) async {
     try {
       final user = await authSource.sigUp(email, password);
       if (user != null) {
