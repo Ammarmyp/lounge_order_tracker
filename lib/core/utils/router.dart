@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 import 'package:paamy_order_tracker/features/authentication/presentation/sign_in_screen.dart';
 import 'package:paamy_order_tracker/features/authentication/presentation/sign_up.dart';
 import 'package:paamy_order_tracker/features/authentication/presentation/super_admin_signIn.dart';

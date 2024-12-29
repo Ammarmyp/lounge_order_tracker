@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 import 'package:paamy_order_tracker/components/my_button.dart';
 import 'package:paamy_order_tracker/features/authentication/presentation/components/my_textField.dart';
 
