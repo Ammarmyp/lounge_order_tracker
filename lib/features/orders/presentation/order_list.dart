@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:paamy_order_tracker/components/my_button.dart';
@@ -29,8 +28,6 @@ class OrderListScreen extends StatelessWidget {
       {"orderNum": 2, "tableNum": 54},
       {"orderNum": 3, "tableNum": 55},
     ];
-
-    final user = FirebaseAuth.instance.currentUser;
 
     return SafeArea(
       child: Scaffold(
