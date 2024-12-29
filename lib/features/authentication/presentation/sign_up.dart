@@ -1,17 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:paamy_order_tracker/components/my_button.dart';
 import 'package:paamy_order_tracker/features/authentication/presentation/components/my_textField.dart';
+import 'package:paamy_order_tracker/features/authentication/presentation/controllers/auth_controller.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({super.key});
 
   final cafeNameController = TextEditingController();
   final phoneNumberController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
-  void onTap() {}
+  void onTap() {
+    if (cafeNameController.text.trim().isEmpty ||
+        phoneNumberController.text.trim().isEmpty ||
+        emailController.text.trim().isEmpty ||
+        passwordController.text.trim().isEmpty ||
+        confirmPasswordController.text.trim().isEmpty) {
+      Get.snackbar("Error", "All fields are required",
+          snackPosition: SnackPosition.BOTTOM);
+      return;
+    }
+
+    if (passwordController.text != confirmPasswordController.text) {
+      Get.snackbar("Error", "Passwords do not match",
+          snackPosition: SnackPosition.BOTTOM);
+      return;
+    }
+
+    if (!GetUtils.isEmail(emailController.text.trim())) {
+      Get.snackbar("Error", "Invalid email",
+          snackPosition: SnackPosition.BOTTOM);
+      return;
+    }
+
+    final controller = Get.find<AuthController>();
+    controller.signUp(
+      cafeNameController.text.trim(),
+      passwordController.text.trim(),
+      cafeNameController.text.trim(),
+      phoneNumberController.text.trim(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +88,15 @@ class SignUp extends StatelessWidget {
                     controller: cafeNameController,
                     labelText: "Cafe Name",
                     hintText: "Central",
+                    obscureText: false,
+                  ),
+                  const SizedBox(
+                    height: 7,
+                  ),
+                  MyTextField(
+                    controller: emailController,
+                    labelText: "Email",
+                    hintText: "ammar@gmail.com",
                     obscureText: false,
                   ),
                   const SizedBox(
@@ -128,7 +170,7 @@ class SignUp extends StatelessWidget {
                     children: [
                       const Text("Already Registered?"),
                       TextButton(
-                        onPressed: () => context.push("/signIn"),
+                        onPressed: () => Get.to("/signIn"),
                         child: const Text(
                           "Sign In",
                         ),

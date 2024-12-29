@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:paamy_order_tracker/core/utils/router.dart';
 
 class MyApp extends StatelessWidget {
@@ -7,9 +8,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      routerConfig: AppRouter.router,
+      getPages: AppRouter.routes,
+      initialRoute: "/",
     );
   }
 }

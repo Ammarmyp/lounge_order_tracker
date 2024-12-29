@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:paamy_order_tracker/features/home/presentation/components/select_icon.dart';
 
@@ -74,14 +75,14 @@ class HomeScreen extends StatelessWidget {
                   icon: Icons.person,
                   label: "User",
                   primaryColor: primaryColor,
-                  onTap: () => context.push("/user"),
+                  onTap: () => Get.to("/user"),
                 ),
                 const SizedBox(width: 30),
                 ModeBtn(
                   icon: Icons.restaurant_rounded,
                   label: "Owner",
                   primaryColor: primaryColor,
-                  onTap: () => context.push("/signIn"),
+                  onTap: () => Get.to("/signIn"),
                 ),
               ],
             ),
