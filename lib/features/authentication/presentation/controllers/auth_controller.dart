@@ -1,4 +1,4 @@
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:paamy_order_tracker/features/authentication/domain/usecases/sign_up_usecase.dart';
 
@@ -27,12 +27,17 @@ class AuthController extends GetxController {
       } else {
         Get.snackbar("Error", "Failed to register user");
       }
-    } catch (e) {
-      String errorMessage = e.toString();
-      if (e is FirebaseException) {
-        Get.snackbar("Error", e.message ?? "An error has occured",
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        Get.snackbar(
+            "Error", "The email address is already in use by another account",
+            snackPosition: SnackPosition.BOTTOM);
+      } else {
+        Get.snackbar("Error", e.message ?? "An error has occurred",
             snackPosition: SnackPosition.BOTTOM);
       }
+    } catch (e) {
+      String errorMessage = e.toString();
       Get.snackbar("Error", errorMessage, snackPosition: SnackPosition.BOTTOM);
       rethrow;
     } finally {
