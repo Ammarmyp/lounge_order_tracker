@@ -19,20 +19,27 @@ class SignUp extends StatelessWidget {
         emailController.text.trim().isEmpty ||
         passwordController.text.trim().isEmpty ||
         confirmPasswordController.text.trim().isEmpty) {
-      Get.snackbar("Error", "All fields are required",
-          snackPosition: SnackPosition.BOTTOM);
+      Get.snackbar(
+        "Error",
+        "All fields are required",
+      );
+
       return;
     }
 
     if (passwordController.text != confirmPasswordController.text) {
-      Get.snackbar("Error", "Passwords do not match",
-          snackPosition: SnackPosition.BOTTOM);
+      Get.snackbar(
+        "Error",
+        "Passwords do not match",
+      );
       return;
     }
 
     if (!GetUtils.isEmail(emailController.text.trim())) {
-      Get.snackbar("Error", "Invalid email",
-          snackPosition: SnackPosition.BOTTOM);
+      Get.snackbar(
+        "Error",
+        "Invalid email",
+      );
       return;
     }
 
