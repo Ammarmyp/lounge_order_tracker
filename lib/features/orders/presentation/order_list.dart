@@ -34,6 +34,20 @@ class OrderListScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          automaticallyImplyLeading: false,
+          title: Obx(() {
+            final user = authController.currentUser.value;
+            return Text(
+              "Welcome ${user?.email ?? "Admin"}",
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            );
+          }),
+        ),
         backgroundColor: Colors.white,
         body: Padding(
           padding: const EdgeInsets.only(
@@ -109,23 +123,6 @@ class OrderListScreen extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            Obx(() {
-              final user = authController.currentUser.value;
-              if (user != null) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Welcome, ${user.displayName ?? "user"}! "),
-                    Text("Email: ${user.email}"),
-                    Text("Phone: ${user.phoneNumber ?? "N/A"}"),
-                  ],
-                );
-              } else {
-                return const Center(
-                  child: Text("No user informaiton is available"),
-                );
-              }
-            }),
             Expanded(
               child: ListView.builder(
                 padding: EdgeInsets.zero,

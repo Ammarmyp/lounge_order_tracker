@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:paamy_order_tracker/features/authentication/presentation/controllers/auth_controller.dart';
 import 'package:paamy_order_tracker/features/home/presentation/components/select_icon.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+
+  final AuthController authController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -79,11 +82,17 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(width: 30),
                   ModeBtn(
-                    icon: Icons.restaurant_rounded,
-                    label: "Owner",
-                    primaryColor: primaryColor,
-                    onTap: () => Get.toNamed("/signIn"),
-                  ),
+                      icon: Icons.restaurant_rounded,
+                      label: "Owner",
+                      primaryColor: primaryColor,
+                      onTap: () {
+                        final user = authController.currentUser.value;
+                        if (user != null) {
+                          Get.toNamed("/orderList");
+                        } else {
+                          Get.toNamed("/signIn");
+                        }
+                      }),
                 ],
               ),
               const SizedBox(
