@@ -9,6 +9,7 @@ class SignUp extends StatelessWidget {
   final cafeNameController = TextEditingController();
   final phoneNumberController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   void onTap() {}
 
@@ -71,6 +72,15 @@ class SignUp extends StatelessWidget {
                   MyTextField(
                     controller: passwordController,
                     labelText: "Password",
+                    hintText: "********",
+                    obscureText: true,
+                  ),
+                  const SizedBox(
+                    height: 7,
+                  ),
+                  MyTextField(
+                    controller: confirmPasswordController,
+                    labelText: "Confirm Password",
                     hintText: "********",
                     obscureText: true,
                   ),
