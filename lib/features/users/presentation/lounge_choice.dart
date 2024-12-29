@@ -23,12 +23,27 @@ class LoungeChoice extends StatelessWidget {
           children: [
             const Padding(
               padding: EdgeInsets.all(16.0),
-              child: Text(
-                "Hey There👋",
-                style: TextStyle(
-                    fontSize: 45,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Hey There👋",
+                    style: TextStyle(
+                        fontSize: 45,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  // SizedBox(
+                  //   height: 5,
+                  // ),
+                  Text(
+                    "Where are you dining today?",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold),
+                  )
+                ],
               ),
             ),
             Container(
