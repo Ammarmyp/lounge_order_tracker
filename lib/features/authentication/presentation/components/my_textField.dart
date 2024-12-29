@@ -24,11 +24,10 @@ class MyTextField extends StatelessWidget {
         // Label styling
         Text(
           labelText,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             fontWeight:
                 FontWeight.w600, // Slightly lighter for better readability
-            color: Colors.white, // White label for contrast on dark background
           ),
         ),
         const SizedBox(height: 8),
@@ -45,8 +44,9 @@ class MyTextField extends StatelessWidget {
             ),
             border: _buildBorder(),
             enabledBorder: _buildBorder(),
-            focusedBorder:
-                _buildBorder(borderColor: Colors.blue), // Focused border color
+            focusedBorder: _buildBorder(
+                borderColor: const Color.fromARGB(
+                    255, 74, 226, 94)), // Focused border color
             filled: true,
             fillColor: Colors.grey.shade100,
             contentPadding: const EdgeInsets.symmetric(

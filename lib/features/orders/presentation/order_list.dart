@@ -24,10 +24,10 @@ class OrderListScreen extends StatelessWidget {
       {"orderNum": 2, "tableNum": 54},
       {"orderNum": 3, "tableNum": 55},
     ];
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Padding(
           padding: const EdgeInsets.only(
             bottom: 15,
             left: 15,
@@ -39,7 +39,7 @@ class OrderListScreen extends StatelessWidget {
               margin: const EdgeInsets.only(top: 10),
               padding: const EdgeInsets.symmetric(
                 horizontal: 10,
-                vertical: 20,
+                vertical: 15,
               ),
               decoration: BoxDecoration(
                   gradient: LinearGradient(

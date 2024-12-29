@@ -48,12 +48,9 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          // title: const Text("Sign up page"),
-          ),
-      body: SafeArea(
-        child: SingleChildScrollView(
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
           child: Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -65,11 +62,11 @@ class SignUp extends StatelessWidget {
                   //   child: const Text("home"),
                   // ),
                   const SizedBox(
-                    height: 25,
+                    height: 20,
                   ),
                   const Icon(
                     Icons.table_restaurant_rounded,
-                    size: 150,
+                    size: 130,
                   ),
                   const SizedBox(
                     height: 10,
@@ -82,7 +79,7 @@ class SignUp extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 8,
                   ),
                   MyTextField(
                     controller: cafeNameController,
@@ -135,7 +132,7 @@ class SignUp extends StatelessWidget {
                   ),
 
                   const SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
 
                   Padding(
@@ -170,7 +167,7 @@ class SignUp extends StatelessWidget {
                     children: [
                       const Text("Already Registered?"),
                       TextButton(
-                        onPressed: () => Get.toNamed("/signUp"),
+                        onPressed: () => Get.toNamed("/signIn"),
                         child: const Text(
                           "Sign In",
                         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
 class LoungeChoice extends StatelessWidget {
@@ -14,10 +15,10 @@ class LoungeChoice extends StatelessWidget {
       {"Name": "Teachers", "Icon": Icons.perm_contact_cal_outlined},
     ];
 
-    return Scaffold(
-      backgroundColor: Colors.black.withOpacity(0.2),
-      body: SafeArea(
-        child: Column(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.black.withOpacity(0.2),
+        body: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -61,7 +62,7 @@ class LoungeChoice extends StatelessWidget {
                         itemBuilder: (context, index) {
                           final lounge = lounges[index];
                           return GestureDetector(
-                            onTap: () => context.push("/user_form"),
+                            onTap: () => Get.toNamed("/user_form"),
                             child: Container(
                               padding: const EdgeInsets.all(15),
                               margin: const EdgeInsets.only(bottom: 10),

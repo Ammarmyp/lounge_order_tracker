@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:paamy_order_tracker/components/my_button.dart';
 import 'package:paamy_order_tracker/features/authentication/presentation/components/my_textField.dart';
@@ -13,9 +14,9 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
           child: Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -69,7 +70,7 @@ class SignInScreen extends StatelessWidget {
                     height: 15,
                   ),
                   MyButton(
-                    onTap: () => context.push("/orderList"),
+                    onTap: () => Get.toNamed("/orderList"),
                     label: "Sign In",
                   ),
 
@@ -107,8 +108,9 @@ class SignInScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      const Text("Try for you restuarant"),
                       TextButton(
-                        onPressed: () => context.push("/signUp"),
+                        onPressed: () => Get.toNamed("/signUp"),
                         child: const Text(
                           "Register here",
                         ),
