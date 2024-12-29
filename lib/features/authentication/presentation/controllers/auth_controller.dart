@@ -81,4 +81,20 @@ class AuthController extends GetxController {
       isLoading.value = false;
     }
   }
+
+  //*logout
+  Future<void> logout() async {
+    isLoading.value = true;
+
+    try {
+      await FirebaseAuth.instance.signOut();
+      currentUser.value = null;
+      Get.snackbar("Success", "Signed Out Successfully");
+      Get.offAllNamed("/");
+    } catch (e) {
+      Get.snackbar("Error", "Sorry can't log out");
+    } finally {
+      isLoading.value = false;
+    }
+  }
 }

@@ -107,14 +107,19 @@ class OrderListScreen extends StatelessWidget {
                   const SizedBox(
                     height: 25,
                   ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "Pending Orders",
                         style: TextStyle(
                             fontSize: 25, fontWeight: FontWeight.bold),
                       ),
+                      MyButton(
+                          onTap: () async {
+                            await authController.logout();
+                          },
+                          label: "Logout")
                     ],
                   ),
                 ],
