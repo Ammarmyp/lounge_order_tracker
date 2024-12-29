@@ -1,12 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:paamy_order_tracker/components/my_button.dart';
 import 'package:paamy_order_tracker/components/order_tile.dart';
 import 'package:paamy_order_tracker/features/authentication/presentation/components/my_textField.dart';
+import 'package:paamy_order_tracker/features/authentication/presentation/controllers/auth_controller.dart';
 
 class OrderListScreen extends StatelessWidget {
   OrderListScreen({super.key});
 
   final orderNumberController = TextEditingController();
+
+  final AuthController authController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +29,9 @@ class OrderListScreen extends StatelessWidget {
       {"orderNum": 2, "tableNum": 54},
       {"orderNum": 3, "tableNum": 55},
     ];
+
+    final user = FirebaseAuth.instance.currentUser;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -101,6 +109,23 @@ class OrderListScreen extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
+            Obx(() {
+              final user = authController.currentUser.value;
+              if (user != null) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Welcome, ${user.displayName ?? "user"}! "),
+                    Text("Email: ${user.email}"),
+                    Text("Phone: ${user.phoneNumber ?? "N/A"}"),
+                  ],
+                );
+              } else {
+                return const Center(
+                  child: Text("No user informaiton is available"),
+                );
+              }
+            }),
             Expanded(
               child: ListView.builder(
                 padding: EdgeInsets.zero,

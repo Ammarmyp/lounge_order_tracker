@@ -8,6 +8,13 @@ class AuthController extends GetxController {
   AuthController(this.signUpUseCase);
 
   final isLoading = false.obs;
+  final Rxn<User> currentUser = Rxn<User>();
+
+  @override
+  void onInit() {
+    super.onInit();
+    currentUser.bindStream(FirebaseAuth.instance.authStateChanges());
+  }
 
   Future<void> signUp(
     String email,
@@ -21,6 +28,7 @@ class AuthController extends GetxController {
       final user =
           await signUpUseCase.execute(email, password, cafeName, phone);
       if (user != null) {
+        currentUser.value = FirebaseAuth.instance.currentUser;
         // ** success logic here
         Get.snackbar("Success", "User created successfully");
         Get.offAllNamed("/orderList");
@@ -53,6 +61,8 @@ class AuthController extends GetxController {
           .signInWithEmailAndPassword(email: email, password: password);
 
       if (userCredential.user != null) {
+        currentUser.value = userCredential.user;
+
         Get.snackbar("Success", "Logged in Successfully");
         Get.offAllNamed("/orderList");
       } else {
