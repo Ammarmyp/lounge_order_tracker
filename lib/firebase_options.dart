@@ -21,15 +21,9 @@ class DefaultFirebaseOptions {
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for android - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         return macos;
       case TargetPlatform.windows:
@@ -66,6 +60,23 @@ class DefaultFirebaseOptions {
     projectId: 'order-tracker-fa5e9',
     storageBucket: 'order-tracker-fa5e9.firebasestorage.app',
     iosBundleId: 'com.example.paamyOrderTracker',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyDXxLdxksdtAPtt4KCfqLWIFdKeU4qzKDE',
+    appId: '1:873816340121:ios:48bcbd7b184ea23493ea08',
+    messagingSenderId: '873816340121',
+    projectId: 'order-tracker-fa5e9',
+    storageBucket: 'order-tracker-fa5e9.firebasestorage.app',
+    iosBundleId: 'com.example.paamyOrderTracker',
+  );
+
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyAqSY430yE3LqDwiteROz1r-TvfDONuGf4',
+    appId: '1:873816340121:android:751cfb6ad0d73f3393ea08',
+    messagingSenderId: '873816340121',
+    projectId: 'order-tracker-fa5e9',
+    storageBucket: 'order-tracker-fa5e9.firebasestorage.app',
   );
 
 }

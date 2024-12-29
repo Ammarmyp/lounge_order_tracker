@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "873816340121",
+    "project_id": "order-tracker-fa5e9",
+    "storage_bucket": "order-tracker-fa5e9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873816340121:android:e0e643d1ee8fcc4893ea08",
+        "android_client_info": {
+          "package_name": "com.example.paamy_order_tracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqSY430yE3LqDwiteROz1r-TvfDONuGf4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873816340121:android:751cfb6ad0d73f3393ea08",
+        "android_client_info": {
+          "package_name": "com.example.paamy_order_tracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqSY430yE3LqDwiteROz1r-TvfDONuGf4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

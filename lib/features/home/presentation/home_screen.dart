@@ -7,13 +7,14 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const primaryColor = Color(0xFF4A90E2); // Subtle primary color
+    const primaryColor =
+        Color.fromARGB(255, 74, 226, 94); // Subtle primary color
     const backgroundGradient = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
       colors: [
         Color(0xFF1E1E1E),
-        Color(0xFF121212),
+        Color.fromARGB(209, 18, 18, 18),
       ],
     );
 
@@ -31,7 +32,7 @@ class HomeScreen extends StatelessWidget {
               radius: 50,
               backgroundColor: primaryColor,
               child: Icon(
-                Icons.track_changes,
+                Icons.table_restaurant_outlined,
                 size: 50,
                 color: Colors.white,
               ),
