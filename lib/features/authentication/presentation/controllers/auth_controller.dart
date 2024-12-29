@@ -44,4 +44,31 @@ class AuthController extends GetxController {
       isLoading.value = false;
     }
   }
+
+  Future<void> login(String email, String password) async {
+    isLoading.value = true;
+
+    try {
+      final userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+
+      if (userCredential.user != null) {
+        Get.snackbar("Success", "Logged in Successfully");
+        Get.offAllNamed("/orderList");
+      } else {
+        Get.snackbar("error", "Login Failed. Please try again");
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "wrong-password") {
+        Get.snackbar("Error", "Incorrect password");
+      } else {
+        Get.snackbar("Error", e.message ?? "An error occurred");
+      }
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+      rethrow;
+    } finally {
+      isLoading.value = false;
+    }
+  }
 }

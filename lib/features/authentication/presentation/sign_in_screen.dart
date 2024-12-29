@@ -2,17 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:paamy_order_tracker/components/my_button.dart';
 import 'package:paamy_order_tracker/features/authentication/presentation/components/my_textField.dart';
+import 'package:paamy_order_tracker/features/authentication/presentation/controllers/auth_controller.dart';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
 
-  final phoneNumberController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void onTap() {}
+  void onTap() {
+    if (emailController.text.trim().isEmpty ||
+        passwordController.text.trim().isEmpty) {
+      Get.snackbar("Error", "Please fill the necessary fields");
+      return;
+    }
+
+    if (!GetUtils.isEmail(emailController.text.trim())) {
+      Get.snackbar("Error", "Invalid email ");
+      return;
+    }
+
+    final controller = Get.find<AuthController>();
+
+    controller.login(
+      emailController.text.trim(),
+      passwordController.text.trim(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<AuthController>();
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -51,9 +71,9 @@ class SignInScreen extends StatelessWidget {
                     height: 7,
                   ),
                   MyTextField(
-                    controller: phoneNumberController,
-                    labelText: "Phone",
-                    hintText: "+251***",
+                    controller: emailController,
+                    labelText: "email",
+                    hintText: "ammar@gmail.com",
                     obscureText: false,
                   ),
                   const SizedBox(
@@ -68,9 +88,13 @@ class SignInScreen extends StatelessWidget {
                   const SizedBox(
                     height: 15,
                   ),
-                  MyButton(
-                    onTap: () => Get.toNamed("/orderList"),
-                    label: "Sign In",
+                  Obx(
+                    () => controller.isLoading.value
+                        ? const CircularProgressIndicator()
+                        : MyButton(
+                            onTap: onTap,
+                            label: "Login",
+                          ),
                   ),
 
                   const SizedBox(
