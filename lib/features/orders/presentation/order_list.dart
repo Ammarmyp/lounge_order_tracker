@@ -149,6 +149,10 @@ class OrderListScreen extends StatelessWidget {
                               : double.tryParse(
                                       order["tableNumber"].toString()) ??
                                   0.0,
+                          onDelete: (orderNumber) {
+                            cafeDataController.deleteOrder(
+                                orderNumber, cafeDataController.email.value);
+                          },
                         ),
                       );
                     },

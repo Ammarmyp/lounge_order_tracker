@@ -4,12 +4,12 @@ import 'package:get/get.dart';
 class CafeDataController extends GetxController {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  // Observable list to hold orders
   var orders = <Map<String, dynamic>>[].obs;
   var isLoading = false.obs;
+  var email = "".obs;
 
-  // Method to fetch orders for a cafe by email
   Future<void> fetchOrders(String cafeEmail) async {
+    this.email.value = cafeEmail;
     isLoading.value = true;
     try {
       final querySnapshot = await firestore
@@ -33,6 +33,35 @@ class CafeDataController extends GetxController {
       Get.snackbar("Error", "Failed to fetch orders!");
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  Future<void> deleteOrder(String orderNumber, String email) async {
+    try {
+      final snapshot = await firestore
+          .collection("cafes")
+          .where("email", isEqualTo: email)
+          .limit(1)
+          .get();
+
+      if (snapshot.docs.isNotEmpty) {
+        final doc = snapshot.docs.first;
+        final docRef = firestore.collection("cafes").doc(doc.id);
+        final currentOrders =
+            List<Map<String, dynamic>>.from(doc.data()["orders"]);
+
+        //*delete using that matchs order number
+        final updatedOrders = currentOrders.where((order) {
+          return order["orderNumber"] != orderNumber;
+        }).toList();
+
+        await docRef.update({"orders": updatedOrders});
+        orders.value = updatedOrders;
+
+        Get.snackbar("Success", "Order deleted successfully.");
+      }
+    } catch (e) {
+      Get.snackbar("Error", "Failed to delete order: $e");
     }
   }
 }

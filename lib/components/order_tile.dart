@@ -5,8 +5,14 @@ import 'package:paamy_order_tracker/core/utils/helper.dart';
 class OrderTile extends StatelessWidget {
   final double orderNum;
   final double tableNum;
+  final Function(String orderNumber) onDelete;
 
-  const OrderTile({super.key, required this.orderNum, required this.tableNum});
+  const OrderTile({
+    super.key,
+    required this.orderNum,
+    required this.tableNum,
+    required this.onDelete,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +32,7 @@ class OrderTile extends StatelessWidget {
           SlidableAction(
             flex: 1,
             onPressed: (context) {
-              showSnackbar("Success", "Deleted");
+              onDelete(formattedOrderNum);
             },
             backgroundColor: Colors.red,
             foregroundColor: Colors.white,
@@ -82,10 +88,6 @@ class OrderTile extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                   color: Colors.grey),
-            ),
-            trailing: Icon(
-              Icons.check_circle_outline,
-              color: Colors.green.shade400,
             ),
           ),
         ),
