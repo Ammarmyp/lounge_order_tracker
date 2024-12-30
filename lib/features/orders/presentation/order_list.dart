@@ -4,14 +4,17 @@ import 'package:paamy_order_tracker/components/my_button.dart';
 import 'package:paamy_order_tracker/components/order_tile.dart';
 import 'package:paamy_order_tracker/features/authentication/presentation/components/my_textField.dart';
 import 'package:paamy_order_tracker/features/authentication/presentation/controllers/auth_controller.dart';
+import 'package:paamy_order_tracker/features/orders/presentation/controller/cafe_data_controller.dart';
 
 class OrderListScreen extends StatelessWidget {
-  OrderListScreen({super.key});
+  OrderListScreen({
+    super.key,
+  });
 
   final orderNumberController = TextEditingController();
 
   final AuthController authController = Get.find();
-
+  final CafeDataController cafeDataController = Get.find<CafeDataController>();
   @override
   Widget build(BuildContext context) {
     final List<Map<String, double>> orders = [
@@ -36,8 +39,12 @@ class OrderListScreen extends StatelessWidget {
           automaticallyImplyLeading: false,
           title: Obx(() {
             final user = authController.currentUser.value;
+            // final user = cafeDataController.currentUser.value;
+            if (user == null) {
+              return const Text("Loading...");
+            }
             return Text(
-              "Welcome ${user?.email ?? "Admin"}",
+              "Welcome ${user.email} ",
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,

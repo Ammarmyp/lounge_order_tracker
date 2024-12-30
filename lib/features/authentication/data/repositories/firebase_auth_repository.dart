@@ -16,10 +16,7 @@ class FirebaseAuthRepository {
       final user = await authSource.sigUp(email, password);
       if (user != null) {
         return UserModel(
-          cafeName: cafeName,
-          id: user.uid,
-          phone: phone,
-        );
+            cafeName: cafeName, id: user.uid, phone: phone, email: email);
       }
 
       return null;

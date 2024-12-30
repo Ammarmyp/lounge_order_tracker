@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:paamy_order_tracker/core/utils/helper.dart';
 import 'package:paamy_order_tracker/features/authentication/domain/usecases/sign_up_usecase.dart';
+import 'package:paamy_order_tracker/features/orders/domain/cafe_data_repository.dart';
+import 'package:paamy_order_tracker/features/orders/presentation/controller/cafe_data_controller.dart';
 
 class AuthController extends GetxController {
   final SignUpUsecase signUpUseCase;
@@ -11,10 +13,13 @@ class AuthController extends GetxController {
 
   final isLoading = false.obs;
   final Rxn<User> currentUser = Rxn<User>();
+  // final CafeDataController cafeDataController = Get.find();
 
   @override
   void onInit() {
     super.onInit();
+    Get.lazyPut<CafeDataController>(
+        () => CafeDataController(Get.find<CafeDataRepository>()));
     currentUser.bindStream(FirebaseAuth.instance.authStateChanges());
   }
 
@@ -104,16 +109,20 @@ class AuthController extends GetxController {
   }
 
   //*logout
+
   Future<void> logout() async {
     isLoading.value = true;
 
     try {
       await FirebaseAuth.instance.signOut();
+      final CafeDataController cafeDataController =
+          Get.find<CafeDataController>();
+      cafeDataController.clearUserData();
       currentUser.value = null;
-      Get.snackbar("Success", "Signed Out Successfully");
+      showSnackbar("Success", "Signed Out Successfully");
       Get.offAllNamed("/");
     } catch (e) {
-      Get.snackbar("Error", "Sorry can't log out");
+      showSnackbar("Error", "Sorry can't log out");
     } finally {
       isLoading.value = false;
     }
