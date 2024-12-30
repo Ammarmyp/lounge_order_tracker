@@ -51,6 +51,7 @@ class AuthController extends GetxController {
             "cafeName": cafeName,
             "isActive": false,
             "role": "admin",
+            "orders": [],
             "createdAt": FieldValue.serverTimestamp(),
           });
           showSnackbar("Success", "User created successfully");

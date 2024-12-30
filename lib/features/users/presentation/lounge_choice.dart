@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:paamy_order_tracker/features/users/presentation/controller/cafe_list_controller.dart';
+import 'package:paamy_order_tracker/features/users/presentation/user_screen.dart';
 
 class LoungeChoice extends StatelessWidget {
   const LoungeChoice({super.key});
@@ -113,7 +114,8 @@ class LoungeChoice extends StatelessWidget {
                             itemBuilder: (context, index) {
                               final cafe = cafeListController.cafes[index];
                               return GestureDetector(
-                                onTap: () => Get.toNamed("/user_form"),
+                                onTap: () =>
+                                    Get.to(() => UserScreen(), arguments: cafe),
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: Colors.green.shade50,

@@ -3,12 +3,15 @@ class UserModel {
   final String email;
   final String phone;
   final String cafeName;
+  final List<Map<String, dynamic>> orders;
 
-  UserModel(
-      {required this.id,
-      required this.email,
-      required this.phone,
-      required this.cafeName});
+  UserModel({
+    required this.id,
+    required this.email,
+    required this.phone,
+    required this.cafeName,
+    this.orders = const [],
+  });
 
   factory UserModel.fromFirestore(
       Map<String, dynamic> data, String documentId) {
@@ -17,6 +20,7 @@ class UserModel {
       email: data["email"],
       phone: data["phone"],
       cafeName: data["cafeName"],
+      orders: List<Map<String, dynamic>>.from(data["orders"] ?? []),
     );
   }
 
@@ -26,6 +30,7 @@ class UserModel {
       'email': email,
       'phone': phone,
       'cafeName': cafeName,
+      "orders": orders,
     };
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:paamy_order_tracker/components/my_button.dart';
 import 'package:paamy_order_tracker/components/my_textField.dart';
+import 'package:paamy_order_tracker/features/users/domain/submission_handler.dart';
 
 class UserScreen extends StatelessWidget {
   UserScreen({super.key});
@@ -10,6 +12,8 @@ class UserScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final selectedCafe = Get.arguments;
+
     const primaryColor = Color(0xFF4A90E2); // Primary color
     const backgroundGradient = LinearGradient(
       begin: Alignment.topCenter,
@@ -34,10 +38,10 @@ class UserScreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 60),
                   // Heading
-                  const Text(
-                    "Order & Table Tracking",
-                    style: TextStyle(
-                      fontSize: 28,
+                  Text(
+                    "Selected Lounge: ${selectedCafe['cafeName']}",
+                    style: const TextStyle(
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
@@ -87,7 +91,13 @@ class UserScreen extends StatelessWidget {
                   const SizedBox(height: 40),
 
                   // Submit Button
-                  MyButton(onTap: () {}, label: "Submit"),
+                  MyButton(
+                    onTap: () => handleSubmit(
+                        cafe: selectedCafe,
+                        tableNumberController: tableNumberController,
+                        orderNumberController: orderNumberController),
+                    label: "Submit",
+                  ),
 
                   const SizedBox(height: 50),
 
