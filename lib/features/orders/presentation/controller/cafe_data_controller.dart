@@ -6,9 +6,11 @@ class CafeDataController extends GetxController {
 
   // Observable list to hold orders
   var orders = <Map<String, dynamic>>[].obs;
+  var isLoading = false.obs;
 
   // Method to fetch orders for a cafe by email
   Future<void> fetchOrders(String cafeEmail) async {
+    isLoading.value = true;
     try {
       final querySnapshot = await firestore
           .collection('cafes')
@@ -29,6 +31,8 @@ class CafeDataController extends GetxController {
     } catch (e) {
       // print("Error fetching orders: $e");
       Get.snackbar("Error", "Failed to fetch orders!");
+    } finally {
+      isLoading.value = false;
     }
   }
 }

@@ -119,7 +119,14 @@ class OrderListScreen extends StatelessWidget {
               Expanded(
                 child: Obx(() {
                   final orders = cafeDataController.orders;
-                  if (orders.isEmpty) {
+                  final isLoading = cafeDataController
+                      .isLoading.value; // Assuming `isLoading` is available
+                  if (isLoading) {
+                    return const Center(
+                      child:
+                          CircularProgressIndicator(), // Show loading indicator
+                    );
+                  } else if (orders.isEmpty) {
                     return const Center(
                       child: Text("No orders found."),
                     );

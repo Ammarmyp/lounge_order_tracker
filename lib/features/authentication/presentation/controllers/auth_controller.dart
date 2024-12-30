@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:paamy_order_tracker/core/utils/helper.dart';
 import 'package:paamy_order_tracker/features/authentication/domain/usecases/sign_up_usecase.dart';
-import 'package:paamy_order_tracker/features/orders/domain/cafe_data_repository.dart';
-import 'package:paamy_order_tracker/features/orders/presentation/controller/cafe_data_controller.dart';
 
 class AuthController extends GetxController {
   final SignUpUsecase signUpUseCase;
