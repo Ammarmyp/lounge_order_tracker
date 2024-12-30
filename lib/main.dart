@@ -29,7 +29,7 @@ void main() async {
 
   Get.put(CafeDataRepository(Get.find<Firebasecafedatasource>()));
 
-  Get.put(CafeDataController(Get.find<CafeDataRepository>()));
+  Get.put(CafeDataController());
 
   runApp(const MyApp());
 }

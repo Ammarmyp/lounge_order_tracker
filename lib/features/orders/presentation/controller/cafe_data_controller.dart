@@ -1,48 +1,34 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:paamy_order_tracker/core/utils/helper.dart';
-import 'package:paamy_order_tracker/features/authentication/data/models/user_model.dart';
-import 'package:paamy_order_tracker/features/orders/domain/order_Repository_interface.dart';
 
 class CafeDataController extends GetxController {
-  final CafeDataRepositoryInterface repository;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  CafeDataController(this.repository);
+  // Observable list to hold orders
+  var orders = <Map<String, dynamic>>[].obs;
 
-  var currentUser = Rxn<UserModel>();
+  // Method to fetch orders for a cafe by email
+  Future<void> fetchOrders(String cafeEmail) async {
+    try {
+      final querySnapshot = await firestore
+          .collection('cafes')
+          .where('email', isEqualTo: cafeEmail)
+          .get();
 
-  @override
-  void onInit() {
-    super.onInit();
-    // fetchUserData();
-  }
-
-  void fetchUserData() {
-    final uid = FirebaseAuth.instance.currentUser?.uid;
-    if (uid != null) {
-      currentUser.bindStream(
-        FirebaseFirestore.instance
-            .collection('cafes')
-            .doc(uid)
-            .snapshots()
-            .map((snapshot) {
-          if (snapshot.exists && snapshot.data() != null) {
-            return UserModel.fromFirestore(snapshot.data()!, snapshot.id);
-          } else {
-            showSnackbar("Error", "User data does not exist");
-            return null;
-          }
-        }),
-      );
-    } else {
-      showSnackbar("Error", "No user is logged in");
-      currentUser.value = null;
+      if (querySnapshot.docs.isNotEmpty) {
+        final cafeData = querySnapshot.docs.first.data();
+        if (cafeData.containsKey('orders')) {
+          orders.value = List<Map<String, dynamic>>.from(cafeData['orders']);
+        } else {
+          orders.clear();
+        }
+      } else {
+        orders.clear();
+        Get.snackbar("Error", "Cafe not found!");
+      }
+    } catch (e) {
+      // print("Error fetching orders: $e");
+      Get.snackbar("Error", "Failed to fetch orders!");
     }
-  }
-
-  void clearUserData() {
-    currentUser.value = null;
-    currentUser.close(); // Unbinds any active streams
   }
 }

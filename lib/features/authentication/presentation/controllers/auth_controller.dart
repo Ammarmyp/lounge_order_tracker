@@ -18,8 +18,8 @@ class AuthController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    Get.lazyPut<CafeDataController>(
-        () => CafeDataController(Get.find<CafeDataRepository>()));
+    // Get.lazyPut<CafeDataController>(
+    //     () => CafeDataController(Get.find<CafeDataRepository>()));
     currentUser.bindStream(FirebaseAuth.instance.authStateChanges());
   }
 
@@ -116,9 +116,9 @@ class AuthController extends GetxController {
 
     try {
       await FirebaseAuth.instance.signOut();
-      final CafeDataController cafeDataController =
-          Get.find<CafeDataController>();
-      cafeDataController.clearUserData();
+      // final CafeDataController cafeDataController =
+      //     Get.find<CafeDataController>();
+      // // cafeDataController.clearUserData();
       currentUser.value = null;
       showSnackbar("Success", "Signed Out Successfully");
       Get.offAllNamed("/");
