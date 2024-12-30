@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:paamy_order_tracker/components/my_button.dart';
-import 'package:paamy_order_tracker/features/authentication/presentation/components/my_textField.dart';
+import 'package:paamy_order_tracker/components/my_textField.dart';
 import 'package:paamy_order_tracker/features/authentication/presentation/controllers/auth_controller.dart';
 
 class SignInScreen extends StatelessWidget {

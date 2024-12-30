@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paamy_order_tracker/components/my_button.dart';
-import 'package:paamy_order_tracker/features/authentication/presentation/components/my_textField.dart';
+import 'package:paamy_order_tracker/components/my_textField.dart';
 
 class UserScreen extends StatelessWidget {
   UserScreen({super.key});
