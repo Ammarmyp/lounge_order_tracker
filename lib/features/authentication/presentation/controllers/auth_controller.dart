@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:paamy_order_tracker/core/utils/helper.dart';
 import 'package:paamy_order_tracker/features/authentication/domain/usecases/sign_up_usecase.dart';
 
 class AuthController extends GetxController {
@@ -28,12 +30,31 @@ class AuthController extends GetxController {
       final user =
           await signUpUseCase.execute(email, password, cafeName, phone);
       if (user != null) {
-        currentUser.value = FirebaseAuth.instance.currentUser;
         // ** success logic here
-        Get.snackbar("Success", "User created successfully");
-        Get.offAllNamed("/orderList");
+        currentUser.value = FirebaseAuth.instance.currentUser;
+
+        //* add cafe to firestore
+        if (currentUser.value == null) {
+          showSnackbar("Error", "No authenticated user found");
+          return;
+        }
+        final uid = currentUser.value!.uid;
+        try {
+          await FirebaseFirestore.instance.collection("cafes").doc(uid).set({
+            "email": email,
+            "phone": phone,
+            "cafeName": cafeName,
+            "isActive": false,
+            "role": "admin",
+            "createdAt": FieldValue.serverTimestamp(),
+          });
+          showSnackbar("Success", "User created successfully");
+          navigateTo("/orderList");
+        } catch (e) {
+          showSnackbar("Error", "Failed to save user details: $e");
+        }
       } else {
-        Get.snackbar("Error", "Failed to register user");
+        showSnackbar("Error", "Failed to register user");
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
