@@ -10,7 +10,6 @@ class OrderListScreen extends StatelessWidget {
   OrderListScreen({super.key});
 
   final orderNumberController = TextEditingController();
-
   final AuthController authController = Get.find();
   final CafeDataController cafeDataController = Get.find<CafeDataController>();
 
@@ -33,34 +32,29 @@ class OrderListScreen extends StatelessWidget {
               return const Text("Loading...");
             }
             return Text(
-              "Welcome ${user.email} ",
+              "Welcome ${user.email}",
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
+                color: Colors.black,
               ),
             );
           }),
         ),
         backgroundColor: Colors.white,
         body: Padding(
-          padding: const EdgeInsets.only(
-            bottom: 15,
-            left: 15,
-            right: 15,
-          ),
+          padding: const EdgeInsets.only(bottom: 15, left: 15, right: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // Search and Logout UI
               Container(
                 margin: const EdgeInsets.only(top: 10),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 15,
-                ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [Colors.grey.shade400, Colors.white],
+                    colors: [Colors.blue.shade100, Colors.white],
                     begin: AlignmentDirectional.topCenter,
                     end: AlignmentDirectional.bottomCenter,
                   ),
@@ -76,6 +70,7 @@ class OrderListScreen extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
+                            color: Colors.black,
                           ),
                         ),
                       ],
@@ -105,6 +100,7 @@ class OrderListScreen extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
+                            color: Colors.black,
                           ),
                         ),
                         MyButton(
