@@ -140,7 +140,7 @@ class LoungeChoice extends StatelessWidget {
                                       Text(
                                         cafe["cafeName"],
                                         style: const TextStyle(
-                                          fontSize: 18,
+                                          fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black87,
                                         ),
@@ -164,7 +164,7 @@ class LoungeChoice extends StatelessWidget {
                                             style: const TextStyle(
                                               fontSize: 18,
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.black87,
+                                              color: Colors.grey,
                                             ),
                                             textAlign: TextAlign.center,
                                           ),
