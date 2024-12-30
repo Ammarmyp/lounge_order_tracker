@@ -9,19 +9,10 @@ class LoungeChoice extends StatelessWidget {
   Widget build(BuildContext context) {
     final cafeListController = Get.put(CafeListController());
 
-    final List<Map<String, dynamic>> lounges = [
-      {"Name": "Central", "Icon": Icons.cabin_outlined},
-      {"Name": "KK Yellow", "Icon": Icons.cake},
-      {"Name": "KK Green", "Icon": Icons.cake},
-      {"Name": "Workers", "Icon": Icons.work_outline_sharp},
-      {"Name": "Teachers", "Icon": Icons.perm_contact_cal_outlined},
-    ];
-
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black.withOpacity(0.2),
+        backgroundColor: Colors.white,
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Padding(
@@ -30,118 +21,131 @@ class LoungeChoice extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Hey There👋",
+                    "Hey There 👋",
                     style: TextStyle(
-                        fontSize: 45,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                      // color: Colors.white,
+                    ),
                   ),
-                  // SizedBox(
-                  //   height: 5,
-                  // ),
+                  SizedBox(height: 5),
                   Text(
                     "Where are you dining today?",
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold),
-                  )
+                      // color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ],
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.grey.shade100,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(45),
-                  topRight: Radius.circular(45),
+            Expanded(
+              child: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0xFF1E1E1E),
+                      Color.fromARGB(179, 18, 18, 18),
+                    ],
+                  ),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
                 ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16, top: 30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Choose a Lounge",
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Choose a Lounge",
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    Obx(() {
-                      if (cafeListController.isLoading.value) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      if (cafeListController.cafes.isEmpty) {
-                        return const Center(
-                          child: Text(
-                            "Oops!! No Registered Cafes are available currently!",
-                            style: TextStyle(
-                              fontSize: 16,
+                      const SizedBox(height: 20),
+                      Obx(() {
+                        if (cafeListController.isLoading.value) {
+                          return const Expanded(
+                            child: Center(
+                              child: CircularProgressIndicator(),
                             ),
-                          ),
-                        );
-                      }
-
-                      return Container(
-                          height: MediaQuery.of(context).size.height *
-                              0.6, // Adjust the height as needed
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            padding: EdgeInsets.zero,
+                          );
+                        }
+                        if (cafeListController.cafes.isEmpty) {
+                          return const Expanded(
+                            child: Center(
+                              child: Text(
+                                "Oops!! No Registered Cafes are available currently!",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.grey,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          );
+                        }
+                        return Expanded(
+                          child: GridView.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 16,
+                              mainAxisSpacing: 16,
+                              childAspectRatio:
+                                  1, // Adjust for better proportions
+                            ),
                             itemCount: cafeListController.cafes.length,
                             itemBuilder: (context, index) {
                               final cafe = cafeListController.cafes[index];
                               return GestureDetector(
                                 onTap: () => Get.toNamed("/user_form"),
                                 child: Container(
-                                  padding: const EdgeInsets.all(15),
-                                  margin: const EdgeInsets.only(bottom: 10),
                                   decoration: BoxDecoration(
-                                      // border:
-                                      // Border.all(color: Colors.white, width: 1.5),
-                                      color: Colors.green.shade200,
-                                      borderRadius: BorderRadius.circular(10),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color:
-                                                Colors.black.withOpacity(0.2),
-                                            spreadRadius: 1,
-                                            blurRadius: 5,
-                                            offset: const Offset(0, 2))
-                                      ]),
-                                  child: Row(
+                                    color: Colors.green.shade50,
+                                    borderRadius: BorderRadius.circular(15),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.shade300,
+                                        spreadRadius: 2,
+                                        blurRadius: 8,
+                                      ),
+                                    ],
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      // Icon(
-                                      //   cafe["Icon"],
-                                      //   size: 30,
-                                      //   color: cafe["Name"] == "KK Yellow"
-                                      //       ? Colors.yellow[400]
-                                      //       : cafe["Name"] == "KK Green"
-                                      //           ? Colors.green
-                                      //           : Colors.black,
-                                      // ),
-                                      const SizedBox(width: 10),
+                                      Icon(
+                                        Icons.coffee_outlined,
+                                        size: 40,
+                                        color: Colors.green.shade600,
+                                      ),
+                                      const SizedBox(height: 10),
                                       Text(
                                         cafe["cafeName"],
                                         style: const TextStyle(
                                           fontSize: 18,
-                                          fontWeight: FontWeight.w500,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black87,
                                         ),
+                                        textAlign: TextAlign.center,
                                       ),
                                     ],
                                   ),
                                 ),
                               );
                             },
-                          ));
-                    }),
-                  ],
+                          ),
+                        );
+                      }),
+                    ],
+                  ),
                 ),
               ),
             ),
