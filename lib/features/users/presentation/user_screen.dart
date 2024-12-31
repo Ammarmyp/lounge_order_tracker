@@ -32,55 +32,35 @@ class UserScreen extends StatelessWidget {
           ),
           child: Center(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 60),
+                  const SizedBox(height: 40),
+
                   // Heading
                   Text(
                     "Selected Lounge: ${selectedCafe['cafeName']}",
                     style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600,
                       color: Colors.white,
+                      letterSpacing: 1.1,
                     ),
                   ),
                   const SizedBox(height: 30),
 
-                  // Table Number Input with QR Code Button
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Expanded(
-                        child: MyTextField(
-                          controller: tableNumberController,
-                          labelText: "Enter Table Number",
-                          hintText: "34",
-                          obscureText: false,
-                          textColor: Colors.black,
-                        ),
-                      ),
-                      const SizedBox(width: 15),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: primaryColor,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.qr_code_scanner,
-                            size: 30,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
+                  // Table Number Input (Updated)
+                  MyTextField(
+                    controller: tableNumberController,
+                    labelText: "Enter Table Number",
+                    hintText: "34",
+                    obscureText: false,
+                    textColor: Colors.black,
                   ),
                   const SizedBox(height: 20),
 
-                  // Order Number Input
+                  // Order Number Input (Updated)
                   MyTextField(
                     controller: orderNumberController,
                     labelText: "Order Number",
@@ -90,18 +70,19 @@ class UserScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 40),
 
-                  // Submit Button
+                  // Submit Button (Updated)
                   MyButton(
                     onTap: () => handleSubmit(
-                        cafe: selectedCafe,
-                        tableNumberController: tableNumberController,
-                        orderNumberController: orderNumberController),
+                      cafe: selectedCafe,
+                      tableNumberController: tableNumberController,
+                      orderNumberController: orderNumberController,
+                    ),
                     label: "Submit",
                   ),
 
                   const SizedBox(height: 50),
 
-                  // Footer text
+                  // Footer text (Updated)
                   const Text(
                     "Track your orders and tables with ease.",
                     style: TextStyle(
