@@ -61,6 +61,7 @@ class CafeDataController extends GetxController {
 
         await docRef.update({"orders": updatedOrders});
         orders.value = updatedOrders;
+        filteredOrders.value = updatedOrders;
 
         Get.snackbar("Success", "Order deleted successfully.");
       }
