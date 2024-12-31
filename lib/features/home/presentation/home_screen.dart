@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:paamy_order_tracker/features/authentication/presentation/controllers/auth_controller.dart';
+import 'package:paamy_order_tracker/features/home/presentation/components/about_project.dart';
 import 'package:paamy_order_tracker/features/home/presentation/components/select_icon.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -23,6 +24,25 @@ class HomeScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF1E1E1E),
+          elevation: 0,
+          leading: Builder(
+            builder: (context) {
+              return IconButton(
+                icon: const Icon(
+                  Icons.menu,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  // Open the drawer when the menu button is pressed
+                  Scaffold.of(context).openDrawer();
+                },
+              );
+            },
+          ),
+        ),
+        drawer: const AboutProject(),
         body: Container(
           decoration: const BoxDecoration(
             gradient: backgroundGradient,

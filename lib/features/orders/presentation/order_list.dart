@@ -4,6 +4,7 @@ import 'package:paamy_order_tracker/components/my_button.dart';
 import 'package:paamy_order_tracker/components/order_tile.dart';
 import 'package:paamy_order_tracker/components/my_textField.dart';
 import 'package:paamy_order_tracker/features/authentication/presentation/controllers/auth_controller.dart';
+import 'package:paamy_order_tracker/features/home/presentation/components/about_project.dart';
 import 'package:paamy_order_tracker/features/orders/presentation/controller/cafe_data_controller.dart';
 
 class OrderListScreen extends StatelessWidget {
@@ -24,24 +25,40 @@ class OrderListScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          automaticallyImplyLeading: false,
+          backgroundColor:
+              Colors.blue.shade100, // Change to a more appealing color
+          elevation: 4, // Subtle shadow for depth
+          actions: [
+            IconButton(
+                onPressed: () async {
+                  await authController.logout();
+                },
+                icon: const Icon(Icons.logout))
+          ],
           title: Obx(() {
             final user = authController.currentUser.value;
             if (user == null) {
-              return const Text("Loading...");
+              return const Text(
+                "Loading...",
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+              );
             }
             return Text(
-              "Welcome ${user.email}",
+              "Welcome, ${user.email}",
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Colors.black,
+                fontSize: 22,
               ),
             );
           }),
+          centerTitle: true, // Center align the title
         ),
         backgroundColor: Colors.white,
+        drawer: const AboutProject(),
         body: Padding(
           padding: const EdgeInsets.only(bottom: 15, left: 15, right: 15),
           child: Column(
@@ -107,12 +124,6 @@ class OrderListScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
-                        ),
-                        MyButton(
-                          onTap: () async {
-                            await authController.logout();
-                          },
-                          label: "Logout",
                         ),
                       ],
                     ),
