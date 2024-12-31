@@ -48,7 +48,7 @@ class HomeScreen extends StatelessWidget {
             gradient: backgroundGradient,
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const Spacer(),
               // Logo placeholder
@@ -118,25 +118,7 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: TextButton(
-                      onPressed: () => Get.toNamed("/superAdmin"),
-                      child: const Text(
-                        "Super Admin",
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
+
               const Spacer(),
               // Footer text
               const Text(

@@ -25,8 +25,8 @@ class OrderListScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor:
-              Colors.blue.shade100, // Change to a more appealing color
+          backgroundColor: Colors.green.shade100,
+
           elevation: 4, // Subtle shadow for depth
           actions: [
             IconButton(
@@ -70,8 +70,8 @@ class OrderListScreen extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Colors.blue.shade100, Colors.white],
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFFC8E6C9), Colors.white],
                     begin: AlignmentDirectional.topCenter,
                     end: AlignmentDirectional.bottomCenter,
                   ),
@@ -114,10 +114,10 @@ class OrderListScreen extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 25),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        const Text(
+                        Text(
                           "Pending Orders",
                           style: TextStyle(
                             fontSize: 25,

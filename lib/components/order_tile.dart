@@ -53,7 +53,7 @@ class OrderTile extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             gradient: LinearGradient(
-              colors: [Colors.blue.shade50, Colors.blue.shade100],
+              colors: [Colors.green.shade50, Colors.green.shade100],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -70,7 +70,7 @@ class OrderTile extends StatelessWidget {
                 const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
             tileColor: Colors.transparent,
             leading: CircleAvatar(
-              backgroundColor: Colors.blue.shade200,
+              backgroundColor: Colors.green.shade200,
               child: const Icon(Icons.hourglass_empty, color: Colors.white),
             ),
             title: Text(

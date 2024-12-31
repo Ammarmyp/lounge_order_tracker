@@ -14,7 +14,6 @@ class UserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final selectedCafe = Get.arguments;
 
-    const primaryColor = Color(0xFF4A90E2); // Primary color
     const backgroundGradient = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,

@@ -8,15 +8,22 @@ class AboutProject extends StatelessWidget {
     return Drawer(
       backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-        topRight: Radius.circular(25),
-        bottomRight: Radius.circular(25),
-      )),
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(25),
+          bottomRight: Radius.circular(25),
+        ),
+      ),
       child: Column(
         children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(),
-            child: Center(
+          DrawerHeader(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.green.shade200, Colors.green.shade50],
+                begin: AlignmentDirectional.topCenter,
+                end: AlignmentDirectional.bottomCenter,
+              ),
+            ),
+            child: const Center(
               child: Text(
                 "Order & Table Tracking App",
                 textAlign: TextAlign.left,

@@ -58,7 +58,8 @@ class MyTextField extends StatelessWidget {
   }
 
   // Helper function for borders to reduce code duplication
-  OutlineInputBorder _buildBorder({Color borderColor = Colors.white}) {
+  OutlineInputBorder _buildBorder(
+      {Color borderColor = const Color(0xFFC8E6C9)}) {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
       borderSide: BorderSide(color: borderColor, width: 1.5),
