@@ -88,7 +88,12 @@ class OrderListScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 10),
-                        MyButton(onTap: () {}, label: "Search"),
+                        MyButton(
+                            onTap: () {
+                              final query = orderNumberController.text.trim();
+                              cafeDataController.searchOrders(query);
+                            },
+                            label: "Search"),
                       ],
                     ),
                     const SizedBox(height: 25),
@@ -118,7 +123,7 @@ class OrderListScreen extends StatelessWidget {
               // Orders List
               Expanded(
                 child: Obx(() {
-                  final orders = cafeDataController.orders;
+                  final orders = cafeDataController.filteredOrders;
                   final isLoading = cafeDataController
                       .isLoading.value; // Assuming `isLoading` is available
                   if (isLoading) {

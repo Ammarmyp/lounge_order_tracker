@@ -5,6 +5,7 @@ class CafeDataController extends GetxController {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   var orders = <Map<String, dynamic>>[].obs;
+  var filteredOrders = <Map<String, dynamic>>[].obs;
   var isLoading = false.obs;
   var email = "".obs;
 
@@ -21,11 +22,14 @@ class CafeDataController extends GetxController {
         final cafeData = querySnapshot.docs.first.data();
         if (cafeData.containsKey('orders')) {
           orders.value = List<Map<String, dynamic>>.from(cafeData['orders']);
+          filteredOrders.assignAll(orders);
         } else {
           orders.clear();
+          filteredOrders.clear();
         }
       } else {
         orders.clear();
+        filteredOrders.clear();
         Get.snackbar("Error", "Cafe not found!");
       }
     } catch (e) {
@@ -62,6 +66,23 @@ class CafeDataController extends GetxController {
       }
     } catch (e) {
       Get.snackbar("Error", "Failed to delete order: $e");
+    }
+  }
+
+  //*on page search
+
+  void searchOrders(String orderNumber) {
+    if (orderNumber.isEmpty) {
+      // If search query is empty, reset to all orders
+      filteredOrders.assignAll(orders);
+    } else {
+      // Filter orders based on the orderNumber
+      filteredOrders.assignAll(
+        orders.where((order) => order["orderNumber"]
+            .toString()
+            .toLowerCase()
+            .contains(orderNumber.toLowerCase())),
+      );
     }
   }
 }

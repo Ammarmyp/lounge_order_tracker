@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:paamy_order_tracker/core/utils/helper.dart';
 
 class OrderTile extends StatelessWidget {
   final double orderNum;
@@ -75,7 +74,7 @@ class OrderTile extends StatelessWidget {
               child: const Icon(Icons.hourglass_empty, color: Colors.white),
             ),
             title: Text(
-              "Table: $formattedTableNum",
+              "Order Number: $formattedOrderNum",
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
@@ -83,11 +82,11 @@ class OrderTile extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              "Order Number: $formattedOrderNum",
+              "Table: $formattedTableNum",
               style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: Colors.grey),
+                  fontWeight: FontWeight.w900,
+                  fontSize: 17,
+                  color: Colors.black54),
             ),
           ),
         ),
