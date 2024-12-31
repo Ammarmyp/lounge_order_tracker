@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:paamy_order_tracker/features/users/presentation/controller/cafe_list_controller.dart';
 import 'package:paamy_order_tracker/features/users/presentation/user_screen.dart';
 
@@ -16,21 +17,21 @@ class LoungeChoice extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.all(16.0),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "Hey There 👋",
-                    style: TextStyle(
+                    style: GoogleFonts.lexend(
                       fontSize: 40,
                       fontWeight: FontWeight.bold,
                       // color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 5),
-                  Text(
+                  const SizedBox(height: 5),
+                  const Text(
                     "Where are you dining today?",
                     style: TextStyle(
                       // color: Colors.white,
@@ -139,7 +140,7 @@ class LoungeChoice extends StatelessWidget {
                                       const SizedBox(height: 10),
                                       Text(
                                         cafe["cafeName"],
-                                        style: const TextStyle(
+                                        style: GoogleFonts.lexend(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black87,

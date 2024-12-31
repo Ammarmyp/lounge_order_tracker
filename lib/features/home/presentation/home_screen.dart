@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:paamy_order_tracker/features/authentication/presentation/controllers/auth_controller.dart';
 import 'package:paamy_order_tracker/features/home/presentation/components/about_project.dart';
 import 'package:paamy_order_tracker/features/home/presentation/components/select_icon.dart';
@@ -62,19 +63,23 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              const Text(
+              Text(
                 "Welcome To",
-                style: TextStyle(
-                  fontSize: 22,
-                  color: Colors.white70,
-                  fontWeight: FontWeight.w500,
-                ),
+                // style: TextStyle(
+                //   fontSize: 22,
+                //   color: Colors.white70,
+                //   fontWeight: FontWeight.w500,
+                // ),
+                style: GoogleFonts.lexend(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white70),
               ),
               const SizedBox(height: 8),
-              const Text(
+              Text(
                 "Order & Table Tracker",
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: GoogleFonts.lexend(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
